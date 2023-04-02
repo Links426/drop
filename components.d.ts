@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ATable: typeof import('@arco-design/web-vue')['Table']
     Charts: typeof import('./src/components/charts/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    MyCard: typeof import('./src/components/myCard.vue')['default']
     MyEcharts: typeof import('./src/components/charts/myEcharts.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

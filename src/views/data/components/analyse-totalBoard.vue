@@ -1,79 +1,91 @@
 <template>
-    <div class="w-full p-20px main-bg">
-        <div text-16px font-500 mb-16px>舆情分析</div>
-        <div flex h-134px>
-            <!-- 访问人数 -->
-            <div class="w-25% mr-20px p-16px rounded-2px flex analyse-normal">
-                <div>
-                    <div font-500 mb-24px>访问总人数</div>
-                    <div text-24px font-bold mb-4px>12256</div>
+    <MyCard>
+        <template #title>
+            <div text-16px font-500 mb-16px>舆情分析</div>
+        </template>
+        <template #content>
+            <div flex h-134px>
+                <!-- 访问人数 -->
+                <div
+                    class="w-25% mr-20px p-16px rounded-2px flex analyse-normal"
+                >
                     <div>
-                        <span>较昨日</span
-                        ><span font-bold ml-8px class="increase"
-                            ><span>+</span>206</span
-                        >
+                        <div font-500 mb-24px>访问总人数</div>
+                        <div text-24px font-bold mb-4px>12256</div>
+                        <div>
+                            <span>较昨日</span
+                            ><span font-bold ml-8px class="increase"
+                                ><span>+</span>206</span
+                            >
+                        </div>
+                    </div>
+
+                    <div flex-1 flex-center h-100px>
+                        <AEcharts :options="totalPeople" />
+                    </div>
+                </div>
+                <!-- 内容发布量 -->
+                <div
+                    class="w-25% mr-20px p-16px rounded-2px flex analyse-special"
+                >
+                    <div>
+                        <div font-500 mb-24px>内容发布量</div>
+                        <div text-24px font-bold mb-4px>12256</div>
+                        <div>
+                            <span>较昨日</span
+                            ><span font-bold ml-8px class="increase"
+                                ><span>+</span>206</span
+                            >
+                        </div>
+                    </div>
+
+                    <div h-100px flex-1>
+                        <AEcharts w-full :options="publishNum" />
                     </div>
                 </div>
 
-                <div flex-1 flex-center h-100px>
-                    <AEcharts :options="totalPeople" />
-                </div>
-            </div>
-            <!-- 内容发布量 -->
-            <div class="w-25% mr-20px p-16px rounded-2px flex analyse-special">
-                <div>
-                    <div font-500 mb-24px>内容发布量</div>
-                    <div text-24px font-bold mb-4px>12256</div>
+                <!-- 评论总量 -->
+                <div
+                    class="w-25% mr-20px p-16px rounded-2px flex analyse-total"
+                >
                     <div>
-                        <span>较昨日</span
-                        ><span font-bold ml-8px class="increase"
-                            ><span>+</span>206</span
-                        >
+                        <div font-500 mb-24px>评论总量</div>
+                        <div text-24px font-bold mb-4px>12256</div>
+                        <div>
+                            <span>较昨日</span
+                            ><span font-bold ml-8px class="increase"
+                                ><span>+</span>206</span
+                            >
+                        </div>
+                    </div>
+
+                    <div h-100px flex-1>
+                        <AEcharts :options="totalPeople" />
                     </div>
                 </div>
 
-                <div h-100px flex-1>
-                    <AEcharts w-full :options="publishNum" />
-                </div>
-            </div>
-
-            <!-- 评论总量 -->
-            <div class="w-25% mr-20px p-16px rounded-2px flex analyse-total">
-                <div>
-                    <div font-500 mb-24px>评论总量</div>
-                    <div text-24px font-bold mb-4px>12256</div>
+                <!-- 分享总量 -->
+                <div
+                    class="w-25% mr-20px p-16px rounded-2px flex analyse-normal"
+                >
                     <div>
-                        <span>较昨日</span
-                        ><span font-bold ml-8px class="increase"
-                            ><span>+</span>206</span
-                        >
+                        <div font-500 mb-24px>评论总量</div>
+                        <div text-24px font-bold mb-4px>12256</div>
+                        <div>
+                            <span>较昨日</span
+                            ><span font-bold ml-8px class="increase"
+                                ><span>+</span>206</span
+                            >
+                        </div>
+                    </div>
+
+                    <div h-100px flex-1>
+                        <AEcharts :options="totalShare" />
                     </div>
                 </div>
-
-                <div h-100px flex-1>
-                    <AEcharts :options="totalPeople" />
-                </div>
             </div>
-
-            <!-- 分享总量 -->
-            <div class="w-25% mr-20px p-16px rounded-2px flex analyse-normal">
-                <div>
-                    <div font-500 mb-24px>评论总量</div>
-                    <div text-24px font-bold mb-4px>12256</div>
-                    <div>
-                        <span>较昨日</span
-                        ><span font-bold ml-8px class="increase"
-                            ><span>+</span>206</span
-                        >
-                    </div>
-                </div>
-
-                <div h-100px flex-1>
-                    <AEcharts :options="totalShare" />
-                </div>
-            </div>
-        </div>
-    </div>
+        </template>
+    </MyCard>
 </template>
 <script setup lang="ts">
 import AEcharts from '@/components/EChartsComponents/a-echarts.vue'
@@ -238,10 +250,6 @@ const totalShare = {
         rgb(var(--red-1)) -3%,
         rgb(var(--red-1)) 100%
     );
-}
-.main-bg {
-    background: var(--color-bg-2);
-    color: var(--color-neutral-10);
 }
 .decrease {
     color: rgb(var(--red-5));

@@ -1,27 +1,28 @@
 <template>
     <div flex>
-        <div class="p-20px main-bg">
-            <div text-16px font-500 mb-16px>详细数据</div>
+        <MyCard class="w-60%">
+            <template #title>详细数据</template>
 
-            <a-radio-group v-model="size" type="button" mb-10px>
-                <a-radio value="small">初级题</a-radio>
-                <a-radio value="medium">中级题</a-radio>
-                <a-radio value="large">高级题</a-radio>
-            </a-radio-group>
-            <a-table
-                :columns="columns"
-                :data="data"
-                :filter-icon-align-left="alignLeft"
-            />
-        </div>
-        <div class="p-20px main-bg ml-16px flex-1">
-            <div font-500 text-16px>学生成绩概述</div>
-            <div h-360px><aEcharts :options="options" /></div>
-        </div>
+            <template #content>
+                <a-radio-group type="button" mb-10px>
+                    <a-radio value="small">初级题</a-radio>
+                    <a-radio value="medium">中级题</a-radio>
+                    <a-radio value="large">高级题</a-radio>
+                </a-radio-group>
+                <a-table
+                    :columns="columns"
+                    :data="data"
+                    :filter-icon-align-left="alignLeft" /></template
+        ></MyCard>
+        <MyCard class="ml-16px w-40%">
+            <template #title> 学生成绩概述</template>
+            <template #content>
+                <div h-360px><aEcharts :options="options" /></div
+            ></template>
+        </MyCard>
     </div>
 </template>
 <script setup lang="ts">
-const size = ref('medium')
 const alignLeft = ref(false)
 
 const columns: any = [
@@ -129,9 +130,5 @@ const options = {
 <style>
 .pointer {
     cursor: pointer;
-}
-.main-bg {
-    background: var(--color-bg-2);
-    color: var(--color-neutral-10);
 }
 </style>

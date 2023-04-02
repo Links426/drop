@@ -27,6 +27,16 @@ const routes = [
                             selectKeys: ['1_0'],
                         },
                     },
+                    {
+                        path: 'mutil',
+                        name: '多维数据分析',
+                        component: () => import('@/views/data/mutil.vue'),
+                        meta: {
+                            label: '多维数据分析',
+                            openKeys: ['1'],
+                            selectKeys: ['1_1'],
+                        },
+                    },
                 ],
             },
             {

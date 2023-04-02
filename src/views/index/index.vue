@@ -85,6 +85,8 @@ const To = (key: string) => {
         router.push('/main')
     } else if (key === '1_0') {
         router.push('/data/analyse')
+    } else if (key === '1_1') {
+        router.push('/data/mutil')
     } else if (key === '2_0') {
         router.push('/personal/info')
     } else if (key === '2_1') {

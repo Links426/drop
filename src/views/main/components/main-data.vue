@@ -1,40 +1,42 @@
 <template>
-    <div class="w-full p-20px main-bg">
-        <div text-20px font-500>👏 欢迎回来，李宇恒 老师</div>
-        <a-divider :margin="16" />
-        <div flex flex-wrap>
-            <div
-                class="w-50% h-100px mb-10px flex-center"
-                :class="data.id % 2 === 0 ? 'main-bg-total-border' : ''"
-                v-for="data in mainTotalList"
-                :key="data.id"
-            >
-                <div flex items-center w-200px>
-                    <div
-                        class="w-60px h-60px rounded mr-20px flex-center main-bg-avater"
-                    >
-                        <i class="iconfont" :class="data.icon"></i>
-                    </div>
-                    <div>
-                        <div text-12px mb-6px>{{ data.name }}</div>
-                        <a-statistic
-                            :value="data.value"
-                            :value-from="0"
-                            animation
+    <MyCard>
+        <template #title>
+            <div text-20px font-500>👏 欢迎回来，李宇恒 老师</div>
+        </template>
+        <template #content>
+            <a-divider :margin="16" />
+            <div flex flex-wrap>
+                <div
+                    class="w-50% h-100px mb-10px flex-center"
+                    :class="data.id % 2 === 0 ? 'main-bg-total-border' : ''"
+                    v-for="data in mainTotalList"
+                    :key="data.id"
+                >
+                    <div flex items-center w-200px>
+                        <div
+                            class="w-60px h-60px rounded mr-20px flex-center main-bg-avater"
                         >
-                        </a-statistic>
+                            <i class="iconfont" :class="data.icon"></i>
+                        </div>
+                        <div>
+                            <div text-12px mb-6px>{{ data.name }}</div>
+                            <a-statistic
+                                :value="data.value"
+                                :value-from="0"
+                                animation
+                            >
+                            </a-statistic>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <a-divider :margin="32" />
-        <div w-full>
-            <div font-500 text-18px ml-16px>学生成绩正确率</div>
-            <div h-300px>
-                <aEcharts :options="options" />
-            </div>
-        </div>
-    </div>
+            <a-divider :margin="32" />
+            <div w-full>
+                <div font-500 text-18px ml-16px>学生成绩正确率</div>
+                <div h-300px>
+                    <aEcharts :options="options" />
+                </div></div></template
+    ></MyCard>
 </template>
 <script setup lang="ts">
 import * as echarts from 'echarts'

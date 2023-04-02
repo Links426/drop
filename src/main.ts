@@ -5,7 +5,7 @@ import ArcoVue from '@arco-design/web-vue'
 import ArcoVueIcon from '@arco-design/web-vue/es/icon'
 import 'uno.css'
 import '@/assets/css/reset.css'
-
+import MyCard from '@/components/myCard.vue'
 import router from '@/router'
 import 'normalize.css'
 import App from './App.vue'
@@ -18,4 +18,5 @@ createApp(App)
     .use(router)
     .use(ArcoVue)
     .use(ArcoVueIcon)
+    .component('MyCard', MyCard)
     .mount('#app')
