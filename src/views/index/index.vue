@@ -9,11 +9,14 @@
             class="header-shadow"
             ><div flex-center>
                 <img src="@/assets/img/answer.png" w-20px h-28px mr-12px />
-                <span>Mechanical Pro</span>
+                <span>Golden Drops</span>
             </div>
             <div>
-                <a-button @click="changeColor">换色黑</a-button>
-                <a-button @click="changeColor1">换色亮</a-button>
+                <a-button @click="changeColor" shape="circle"
+                    ><icon-sun-fill
+                        v-if="colorStatus === 'light'" /><icon-moon-fill
+                        v-if="colorStatus === 'dark'"
+                /></a-button>
             </div>
         </a-layout-header>
         <a-layout>
@@ -125,11 +128,16 @@ onMounted(() => {
     routesList.value = newArr
 })
 
+const colorStatus = ref('light')
+
 const changeColor = () => {
-    document.body.setAttribute('arco-theme', 'dark')
-}
-const changeColor1 = () => {
-    document.body.setAttribute('arco-theme', 'light')
+    if (colorStatus.value === 'light') {
+        document.body.setAttribute('arco-theme', 'dark')
+        colorStatus.value = 'dark'
+    } else {
+        document.body.setAttribute('arco-theme', 'light')
+        colorStatus.value = 'light'
+    }
 }
 </script>
 

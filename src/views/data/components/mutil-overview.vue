@@ -16,12 +16,14 @@
                             <a-statistic
                                 font-bold
                                 :value="data.value"
+                                :precision="2"
                                 show-group-separator
                                 animation
                             >
                                 <template #prefix>
                                     <icon-arrow-rise /> </template
-                            ></a-statistic>
+                                ><template #suffix>%</template></a-statistic
+                            >
                         </div>
                     </div>
                 </div>
@@ -30,12 +32,12 @@
         </MyCard>
         <div class="flex flex-col w-30%">
             <MyCard h-200px mb-16px>
-                <template #title>今日数据统计</template>
+                <template #title>上周库存统计(斤)</template>
                 <template #content
                     ><AEcharts :options="todaySummaryOption" /></template
             ></MyCard>
             <MyCard h-300px>
-                <template #title>内容题材分布</template>
+                <template #title>市场信息概况</template>
                 <template #content
                     ><AEcharts :options="dataDistribution"
                 /></template>
@@ -45,27 +47,27 @@
 
     <div flex h-200px w-full>
         <MyCard class="w-25% mr-16px"
-            ><template #title>用户留存趋势</template
+            ><template #title>市场土豆消费量(吨)(较上周)</template
             ><template #content>
                 <a-statistic
                     font-bold
                     :value-style="{ color: '#0fbf60' }"
-                    :value="5670"
+                    :value="12"
                     show-group-separator
                     animation
                 >
                     <template #prefix> <icon-arrow-rise /> </template
                     ><template #suffix>%</template></a-statistic
                 >
-                <AEcharts :options="peopleLeaveTrend" /> </template
+                <AEcharts :options="potatoCustomTrend" /> </template
         ></MyCard>
         <MyCard class="w-25% mr-16px"
-            ><template #title>用户留存量</template
+            ><template #title>市场白菜消费量(吨)(较上周)</template
             ><template #content>
                 <a-statistic
                     font-bold
                     :value-style="{ color: '#0fbf60' }"
-                    :value="5670"
+                    :value="2"
                     show-group-separator
                     animation
                 >
@@ -75,34 +77,34 @@
                 <AEcharts w-full :options="peopleLeaveNum" /></template
         ></MyCard>
         <MyCard class="w-25% mr-16px"
-            ><template #title>用户留存趋势</template
+            ><template #title>市场洋葱消费量(吨)(较上周)</template
             ><template #content>
                 <a-statistic
                     font-bold
                     :value-style="{ color: '#0fbf60' }"
-                    :value="5670"
+                    :value="3"
                     show-group-separator
                     animation
                 >
                     <template #prefix> <icon-arrow-rise /> </template
                     ><template #suffix>%</template></a-statistic
                 >
-                <AEcharts :options="peopleLeaveTrend" /></template
+                <AEcharts :options="onionCustomTrend" /></template
         ></MyCard>
         <MyCard class="w-25%"
-            ><template #title>内容消费量</template
+            ><template #title>市场上海青消费量(吨)(较上周)</template
             ><template #content>
                 <a-statistic
                     font-bold
                     :value-style="{ color: '#0fbf60' }"
-                    :value="5670"
+                    :value="8"
                     show-group-separator
                     animation
                 >
                     <template #prefix> <icon-arrow-rise /> </template
                     ><template #suffix>%</template></a-statistic
                 >
-                <AEcharts w-full :options="peopleLeaveNum" /></template
+                <AEcharts w-full :options="shangHaiVegetableNum" /></template
         ></MyCard>
     </div>
 </template>
@@ -110,26 +112,26 @@
 const dataOverviewList = [
     {
         id: 0,
-        title: '内容生产量',
-        value: 1902,
+        title: '土豆价格(较上周)',
+        value: 12.08,
         backgroundClass: 'analyse-normal',
     },
     {
         id: 1,
-        title: '内容点击量',
-        value: 2445,
+        title: '白菜价格(较上周)',
+        value: 8.1,
         backgroundClass: 'analyse-normal',
     },
     {
         id: 2,
-        title: '内容曝光量',
-        value: 3034,
+        title: '洋葱价格(较上周)',
+        value: 4.3,
         backgroundClass: 'analyse-special',
     },
     {
         id: 3,
-        title: '活跃用户数',
-        value: 945,
+        title: '青菜(较上周)',
+        value: 3.3,
         backgroundClass: 'analyse-total',
     },
 ]
@@ -158,7 +160,7 @@ const dataOverviewOption = {
         {
             type: 'category',
             boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ['3.21', '3.22', '3.23', '3.24', '3.25', '3.26', '3.27'],
         },
     ],
     yAxis: [
@@ -169,7 +171,7 @@ const dataOverviewOption = {
 
     series: [
         {
-            name: 'Email',
+            name: '土豆单价(元/斤)',
             type: 'line',
             stack: 'Total',
             areaStyle: {},
@@ -178,10 +180,10 @@ const dataOverviewOption = {
             emphasis: {
                 focus: 'series',
             },
-            data: [120, 132, 101, 134, 90, 230, 210],
+            data: [0.63, 0.78, 0.71, 0.75, 0.8, 0.81, 0.71],
         },
         {
-            name: 'Union Ads',
+            name: '白菜单价(元/斤)',
             type: 'line',
             stack: 'Total',
             areaStyle: {},
@@ -189,32 +191,21 @@ const dataOverviewOption = {
             emphasis: {
                 focus: 'series',
             },
-            data: [220, 182, 191, 234, 290, 330, 310],
+            data: [0.31, 0.28, 0.3, 0.33, 0.28, 0.37, 0.33],
         },
         {
-            name: 'Video Ads',
+            name: '洋葱价格(元/斤)',
             type: 'line',
             stack: 'Total',
-            areaStyle: {},
             smooth: true,
             emphasis: {
                 focus: 'series',
             },
-            data: [150, 232, 201, 154, 190, 330, 410],
+            data: [0.45, 0.46, 0.41, 0.35, 0.38, 0.49, 0.38],
         },
+
         {
-            name: 'Direct',
-            type: 'line',
-            stack: 'Total',
-            smooth: true,
-            areaStyle: {},
-            emphasis: {
-                focus: 'series',
-            },
-            data: [320, 332, 301, 334, 390, 330, 320],
-        },
-        {
-            name: 'Search Engine',
+            name: '青菜价格(元/斤)',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -226,7 +217,7 @@ const dataOverviewOption = {
             emphasis: {
                 focus: 'series',
             },
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [0.56, 0.49, 0.45, 0.67, 0.66, 0.58, 0.51],
         },
     ],
 }
@@ -258,13 +249,13 @@ const todaySummaryOption = {
     },
     yAxis: {
         type: 'category',
-        data: ['India', 'China', 'World'],
+        data: ['土豆', '洋葱', '白菜'],
     },
     series: [
         {
-            name: '2012',
+            name: '库存量',
             type: 'bar',
-            data: [1231, 1123, 981],
+            data: [313, 182, 55],
         },
     ],
 }
@@ -306,10 +297,10 @@ const dataDistribution = {
     ],
 }
 
-const peopleLeaveTrend = {
+const potatoCustomTrend = {
     xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: ['3.21', '3.22', '3.23', '3.24', '3.25', '3.26', '3.27'],
         axisTick: {
             show: false, //刻度线
         },
@@ -340,7 +331,57 @@ const peopleLeaveTrend = {
     },
     series: [
         {
-            data: [124, 37, 901, 934, 1782, 2813, 1920],
+            data: [234, 211, 198, 197, 221, 213, 209],
+            type: 'line',
+            smooth: true,
+        },
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
+}
+
+const onionCustomTrend = {
+    xAxis: {
+        type: 'category',
+        data: ['3.21', '3.22', '3.23', '3.24', '3.25', '3.26', '3.27'],
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    yAxis: {
+        type: 'value',
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    grid: {
+        top: '1%',
+        containLabel: false,
+    },
+    series: [
+        {
+            data: [58.1, 49.34, 51.1, 56.6, 45.4, 41.12, 48.49],
             type: 'line',
             smooth: true,
         },
@@ -370,7 +411,7 @@ const peopleLeaveNum = {
     xAxis: [
         {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ['3.21', '3.22', '3.23', '3.24', '3.25', '3.26', '3.27'],
             axisTick: {
                 show: false, //刻度线
             },
@@ -402,9 +443,59 @@ const peopleLeaveNum = {
             name: 'Direct',
             type: 'bar',
             barWidth: '60%',
-            data: [100, 283, 231, 182, 113, 123, 209, 283, 231, 182, 113, 123],
+            data: [58, 49, 51, 56, 45, 41, 48],
         },
     ],
+}
+
+const shangHaiVegetableNum = {
+    xAxis: {
+        type: 'category',
+        data: ['3.21', '3.22', '3.23', '3.24', '3.25', '3.26', '3.27'],
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    yAxis: {
+        type: 'value',
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    grid: {
+        top: '1%',
+        containLabel: false,
+    },
+    series: [
+        {
+            data: [49.1, 38.45, 37.56, 33.12, 36.15, 40.01, 41.23],
+            type: 'line',
+            smooth: true,
+        },
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
 }
 </script>
 

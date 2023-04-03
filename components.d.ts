@@ -9,9 +9,12 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AAvatar: typeof import('@arco-design/web-vue')['Avatar']
+    AAvatarGroup: typeof import('@arco-design/web-vue')['AvatarGroup']
     ABreadcrumb: typeof import('@arco-design/web-vue')['Breadcrumb']
     ABreadcrumbItem: typeof import('@arco-design/web-vue')['BreadcrumbItem']
     AButton: typeof import('@arco-design/web-vue')['Button']
+    ADescriptions: typeof import('@arco-design/web-vue')['Descriptions']
     ADivider: typeof import('@arco-design/web-vue')['Divider']
     AEcharts: typeof import('./src/components/EChartsComponents/a-echarts.vue')['default']
     ALayout: typeof import('@arco-design/web-vue')['Layout']
@@ -32,6 +35,7 @@ declare module '@vue/runtime-core' {
     AStatistic: typeof import('@arco-design/web-vue')['Statistic']
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATable: typeof import('@arco-design/web-vue')['Table']
+    BorderCard: typeof import('./src/components/borderCard.vue')['default']
     Charts: typeof import('./src/components/charts/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MyCard: typeof import('./src/components/myCard.vue')['default']

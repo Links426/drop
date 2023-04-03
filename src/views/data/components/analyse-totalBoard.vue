@@ -1,7 +1,7 @@
 <template>
     <MyCard>
         <template #title>
-            <div text-16px font-500 mb-16px>舆情分析</div>
+            <div text-16px font-500 mb-16px>农业分析</div>
         </template>
         <template #content>
             <div flex h-134px>
@@ -10,12 +10,12 @@
                     class="w-25% mr-20px p-16px rounded-2px flex analyse-normal"
                 >
                     <div>
-                        <div font-500 mb-24px>访问总人数</div>
-                        <div text-24px font-bold mb-4px>12256</div>
+                        <div font-500 mb-24px>农作物种植产量变化趋势</div>
+                        <div text-24px font-bold mb-4px>98.7万吨</div>
                         <div>
-                            <span>较昨日</span
+                            <span>较去年</span
                             ><span font-bold ml-8px class="increase"
-                                ><span>+</span>206</span
+                                ><span>+</span>1.3万吨</span
                             >
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     class="w-25% mr-20px p-16px rounded-2px flex analyse-special"
                 >
                     <div>
-                        <div font-500 mb-24px>内容发布量</div>
+                        <div font-500 mb-24px>农作物种植面积变化趋势</div>
                         <div text-24px font-bold mb-4px>12256</div>
                         <div>
                             <span>较昨日</span
@@ -49,38 +49,37 @@
                     class="w-25% mr-20px p-16px rounded-2px flex analyse-total"
                 >
                     <div>
-                        <div font-500 mb-24px>评论总量</div>
-                        <div text-24px font-bold mb-4px>12256</div>
+                        <div font-500 mb-24px>七天土豆单价走势</div>
+                        <div text-24px font-bold mb-4px>0.78</div>
                         <div>
                             <span>较昨日</span
                             ><span font-bold ml-8px class="increase"
-                                ><span>+</span>206</span
+                                ><span>+</span>0.23</span
                             >
                         </div>
                     </div>
 
                     <div h-100px flex-1>
-                        <AEcharts :options="totalPeople" />
+                        <AEcharts :options="potatoPrice" />
                     </div>
                 </div>
 
-                <!-- 分享总量 -->
                 <div
                     class="w-25% mr-20px p-16px rounded-2px flex analyse-normal"
                 >
                     <div>
-                        <div font-500 mb-24px>评论总量</div>
-                        <div text-24px font-bold mb-4px>12256</div>
+                        <div font-500 mb-24px>市场蔬菜种类</div>
+                        <div text-24px font-bold mb-4px>18 种</div>
                         <div>
                             <span>较昨日</span
                             ><span font-bold ml-8px class="increase"
-                                ><span>+</span>206</span
+                                ><span>+</span>2</span
                             >
                         </div>
                     </div>
 
                     <div h-100px flex-1>
-                        <AEcharts :options="totalShare" />
+                        <AEcharts :options="vegetablesType" />
                     </div>
                 </div>
             </div>
@@ -92,7 +91,7 @@ import AEcharts from '@/components/EChartsComponents/a-echarts.vue'
 const totalPeople = {
     xAxis: {
         type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        data: ['2016', '2017', '2018', '2019', '2020'],
         axisTick: {
             show: false, //刻度线
         },
@@ -119,9 +118,10 @@ const totalPeople = {
     },
     series: [
         {
-            data: [12, 37, 901, 934, 1290, 1330, 1320],
+            data: [93.9, 94.3, 95.1, 96.5, 98.9],
             type: 'line',
             smooth: true,
+            name: '产量（万吨)',
         },
     ],
     tooltip: {
@@ -150,7 +150,7 @@ const publishNum = {
     xAxis: [
         {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ['2016', '2017', '2018', '2019', '2020'],
             axisTick: {
                 show: false, //刻度线
             },
@@ -179,15 +179,15 @@ const publishNum = {
     ],
     series: [
         {
-            name: 'Direct',
+            name: '面积(万亩)',
             type: 'bar',
             barWidth: '60%',
-            data: [100, 283, 231, 182, 113, 123, 209, 283, 231, 182, 113, 123],
+            data: [541.8, 542.1, 543.2, 540.8, 564.7],
         },
     ],
 }
 
-const totalShare = {
+const vegetablesType = {
     tooltip: {
         trigger: 'item',
     },
@@ -196,7 +196,7 @@ const totalShare = {
     },
     series: [
         {
-            name: 'Access From',
+            name: '种类',
             type: 'pie',
             radius: ['60%', '80%'],
             avoidLabelOverlap: false,
@@ -218,14 +218,70 @@ const totalShare = {
                 show: false,
             },
             data: [
-                { value: 1048, name: 'Search Engine' },
-                { value: 735, name: 'Direct' },
-                { value: 580, name: 'Email' },
-                { value: 484, name: 'Union Ads' },
-                { value: 300, name: 'Video Ads' },
+                { value: '0.09', name: '红薯' },
+                { value: '0.11', name: '土豆' },
+                { value: '0.08', name: '白菜' },
+                { value: '0.02', name: '茄子' },
+                { value: '0.06', name: '芋头' },
+                { value: '0.12', name: '豆角' },
+                { value: '0.05', name: '莲藕' },
+                { value: '0.01', name: '小白菜' },
+                { value: '0.04', name: '菠菜' },
+                { value: '0.06', name: '芹菜' },
+                { value: '0.04', name: '紫菜' },
+                { value: '0.06', name: '菠菜' },
+                { value: '0.09', name: '莴苣' },
+                { value: '0.08', name: '竹笋' },
             ],
         },
     ],
+}
+
+const potatoPrice = {
+    xAxis: {
+        type: 'category',
+        data: ['3-21', '3-22', '3-23', '3-24', '3-25'],
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    yAxis: {
+        type: 'value',
+        axisTick: {
+            show: false, //刻度线
+        },
+        axisLine: {
+            show: false, //隐藏y轴
+        },
+        axisLabel: {
+            show: false, //隐藏刻度值
+        },
+        splitLine: { show: false },
+    },
+    series: [
+        {
+            data: [0.63, 0.78, 0.71, 0.75, 0.8],
+            type: 'line',
+            smooth: true,
+            name: '单价(元/斤)',
+        },
+    ],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985',
+            },
+        },
+    },
 }
 </script>
 
