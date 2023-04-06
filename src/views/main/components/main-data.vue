@@ -1,50 +1,56 @@
 <template>
-    <div class="w-full p-20px main-bg">
-        <div text-20px font-500>👏 欢迎回来，李宇恒 老师</div>
-        <a-divider :margin="16" />
-        <div flex flex-wrap>
-            <div
-                class="w-50% h-100px mb-10px flex-center"
-                :class="data.id % 2 === 0 ? 'main-bg-total-border' : ''"
-                v-for="data in mainTotalList"
-                :key="data.id"
-            >
-                <div flex items-center w-200px>
-                    <div
-                        class="w-60px h-60px rounded mr-20px flex-center main-bg-avater"
-                    >
-                        <i class="iconfont" :class="data.icon"></i>
-                    </div>
-                    <div>
-                        <div text-12px mb-6px>{{ data.name }}</div>
-                        <a-statistic
-                            :value="data.value"
-                            :value-from="0"
-                            animation
+    <MyCard>
+        <template #title>
+            <div flex justify-between>
+                <div text-20px font-500>🍃 欢迎回来，李宇恒</div>
+                <div text-16px>🚀 甘肃省 白银市</div>
+            </div>
+        </template>
+        <template #content>
+            <a-divider :margin="16" />
+            <div flex flex-wrap>
+                <div
+                    class="w-50% h-100px mb-10px flex-center"
+                    :class="data.id % 2 === 0 ? 'main-bg-total-border' : ''"
+                    v-for="data in mainTotalList"
+                    :key="data.id"
+                >
+                    <div flex items-center w-200px>
+                        <div
+                            class="w-60px h-60px rounded mr-20px flex-center main-bg-avater"
                         >
-                        </a-statistic>
+                            <i class="iconfont" :class="data.icon"></i>
+                        </div>
+                        <div>
+                            <div text-12px mb-6px>{{ data.name }}</div>
+                            <a-statistic
+                                :value="data.value"
+                                :value-from="0"
+                                :precision="2"
+                                animation
+                            >
+                            </a-statistic>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <a-divider :margin="32" />
-        <div w-full>
-            <div font-500 text-18px ml-16px>学生成绩正确率</div>
-            <div h-300px>
-                <aEcharts :options="options" />
-            </div>
-        </div>
-    </div>
+            <a-divider :margin="32" />
+            <div w-full>
+                <div font-500 text-18px ml-16px>七日气候预测</div>
+                <div h-300px>
+                    <aEcharts :options="options" />
+                </div></div></template
+    ></MyCard>
 </template>
 <script setup lang="ts">
 import * as echarts from 'echarts'
 import aEcharts from '@/components/EChartsComponents/a-echarts.vue'
 
 const mainTotalList: any = [
-    { id: 0, name: '注册学生总数', icon: 'icon-renliziyuan', value: 2383 },
-    { id: 1, name: '本周活动学生', icon: 'icon-rizhi', value: 368 },
-    { id: 2, name: '日活学生', icon: 'icon-shoucang', value: 112 },
-    { id: 3, name: '较昨日新增', icon: 'icon-fenxiang', value: 330 },
+    { id: 0, name: '实时最高气温', icon: 'icon-renliziyuan', value: 24.6 },
+    { id: 1, name: '实时最大持续风速', icon: 'icon-rizhi', value: 9.7 },
+    { id: 2, name: '实时最低气温', icon: 'icon-shoucang', value: 5.12 },
+    { id: 3, name: '实时最大阵风', icon: 'icon-fenxiang', value: 14.4 },
 ]
 const options = {
     color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
@@ -59,7 +65,13 @@ const options = {
         },
     },
     legend: {
-        data: ['Line 1', 'Line 2', 'Line 3', 'Line 4', 'Line 5'],
+        data: [
+            '七日降水量预测',
+            '七日最高气温预测',
+            '七日最大阵风预测',
+            '七日最大持续风速预测',
+            '七日能见度预测',
+        ],
     },
     toolbox: {
         feature: {
@@ -76,7 +88,7 @@ const options = {
         {
             type: 'category',
             boundaryGap: false,
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            data: ['3-21', '3-22', '3-23', '3-24', '3-25', '3-26', '3-27'],
         },
     ],
     yAxis: [
@@ -86,7 +98,7 @@ const options = {
     ],
     series: [
         {
-            name: 'Line 1',
+            name: '七日降水量预测',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -110,10 +122,10 @@ const options = {
             emphasis: {
                 focus: 'series',
             },
-            data: [140, 232, 101, 264, 90, 340, 250],
+            data: [8, 19, 4, 10, 9, 6, 12],
         },
         {
-            name: 'Line 2',
+            name: '七日最高气温预测',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -137,10 +149,10 @@ const options = {
             emphasis: {
                 focus: 'series',
             },
-            data: [120, 282, 111, 234, 220, 340, 310],
+            data: [21, 19, 10, 28, 21, 19, 24],
         },
         {
-            name: 'Line 3',
+            name: '七日最大阵风预测',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -164,10 +176,10 @@ const options = {
             emphasis: {
                 focus: 'series',
             },
-            data: [320, 132, 201, 334, 190, 130, 220],
+            data: [19.2, 10.1, 12.9, 8.3, 1.4, 9.2, 11.3],
         },
         {
-            name: 'Line 4',
+            name: '七日最大持续风速预测',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -191,10 +203,10 @@ const options = {
             emphasis: {
                 focus: 'series',
             },
-            data: [220, 402, 231, 134, 190, 230, 120],
+            data: [10.1, 22.3, 10.8, 13.3, 4.2, 15.2, 19.3],
         },
         {
-            name: 'Line 5',
+            name: '七日能见度预测',
             type: 'line',
             stack: 'Total',
             smooth: true,
@@ -222,7 +234,7 @@ const options = {
             emphasis: {
                 focus: 'series',
             },
-            data: [220, 302, 181, 234, 210, 290, 150],
+            data: [40.2, 45.1, 22.3, 50.2, 10.3, 16.3, 30.1],
         },
     ],
 }
