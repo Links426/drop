@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+智慧惠农.zip
 *.local
 
 # Editor directories and files
